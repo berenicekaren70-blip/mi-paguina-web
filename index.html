@@ -12,51 +12,38 @@ body{
 margin:0;
 font-family:Arial;
 background:white;
-overflow:hidden;
+overflow-x:hidden;
+text-align:center;
 }
 
-/* 💗 corazones */
-.corazones{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-z-index:0;
-}
-
+/* corazones */
 .corazon{
-position:absolute;
-bottom:-50px;
-animation: subir 8s linear infinite;
+position:fixed;
+color:pink;
+font-size:12px;
+animation: flotar 8s linear infinite;
 opacity:0.7;
 }
 
-/* tamaños variados */
-.corazon:nth-child(1){ font-size:10px; }
-.corazon:nth-child(2){ font-size:14px; }
-.corazon:nth-child(3){ font-size:12px; }
-.corazon:nth-child(4){ font-size:16px; }
-.corazon:nth-child(5){ font-size:11px; }
-.corazon:nth-child(6){ font-size:13px; }
-
-@keyframes subir{
-0%{ transform:translateY(0) translateX(0); opacity:0; }
-50%{ opacity:1; }
-100%{ transform:translateY(-100vh) translateX(50px); opacity:0; }
+@keyframes flotar{
+0%{
+transform:translateY(100vh);
+opacity:0;
 }
-
-/* menú */
-.menu{
-background:#ffe4ec;
-padding:15px;
-text-align:center;
-position:relative;
-z-index:2;
+50%{
+opacity:1;
+}
+100%{
+transform:translateY(-100vh);
+opacity:0;
+}
 }
 
 /* botones */
+.menu{
+padding:20px;
+}
+
 button{
 background:#ffb6c1;
 color:white;
@@ -65,6 +52,7 @@ padding:12px 25px;
 margin:5px;
 border-radius:20px;
 cursor:pointer;
+font-size:16px;
 transition:0.2s;
 }
 
@@ -78,29 +66,15 @@ transform:scale(0.9);
 
 /* contenido */
 #contenido{
-position:relative;
-z-index:2;
 padding:20px;
-text-align:center;
 }
 
-/* galería */
-.galeria{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-}
-
+/* galeria */
 .galeria img{
-width:200px;
+width:220px;
 margin:10px;
 border-radius:15px;
-box-shadow:0px 5px 15px rgba(0,0,0,0.2);
-transition:0.3s;
-}
-
-.galeria img:hover{
-transform:scale(1.1);
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
 
 </style>
@@ -108,66 +82,83 @@ transform:scale(1.1);
 
 <body>
 
-<!-- 💗 corazones -->
-<div class="corazones">
-<span class="corazon" style="left:10%; animation-delay:0s;">💗</span>
-<span class="corazon" style="left:30%; animation-delay:2s;">💕</span>
-<span class="corazon" style="left:50%; animation-delay:4s;">💖</span>
-<span class="corazon" style="left:70%; animation-delay:1s;">💞</span>
-<span class="corazon" style="left:90%; animation-delay:3s;">💓</span>
-<span class="corazon" style="left:20%; animation-delay:5s;">🤍</span>
-</div>
+<!-- corazones -->
+<div class="corazon" style="left:10%; animation-delay:0s;">💗</div>
+<div class="corazon" style="left:30%; animation-delay:2s;">💕</div>
+<div class="corazon" style="left:50%; animation-delay:4s;">💖</div>
+<div class="corazon" style="left:70%; animation-delay:1s;">💞</div>
+<div class="corazon" style="left:90%; animation-delay:3s;">💓</div>
 
-<!-- 🔘 menú -->
+<!-- menu -->
 <div class="menu">
-<button onclick="mostrarInicio()">Inicio 💖</button>
-<button onclick="mostrarMensaje()">Mensaje 💌</button>
-<button onclick="mostrarGaleria()">Galería 📸</button>
+
+<button onclick="inicio()">Inicio 💖</button>
+
+<button onclick="mensaje()">Mensaje 💌</button>
+
+<button onclick="galeria()">Galería 📸</button>
+
 </div>
 
 <!-- contenido -->
 <div id="contenido">
+
 <h1>💖 Feliz cumpleaños mi amor 💖</h1>
+
 <p>Te amo muchísimo 💕</p>
+
 </div>
 
-<!-- 🎵 música -->
-<audio id="musica" loop style="display:none;">
+<!-- musica -->
+<audio id="musica" loop>
 <source src="audio/musica.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 
-/* iniciar música al primer clic */
+/* iniciar musica */
 document.addEventListener("click", function(){
 document.getElementById("musica").play();
-});
+}, { once:true });
 
 /* inicio */
-function mostrarInicio(){
+function inicio(){
+
 document.getElementById("contenido").innerHTML = `
 <h1>💖 Feliz cumpleaños mi amor 💖</h1>
 <p>Te amo muchísimo 💕</p>
 `;
+
 }
 
 /* mensaje */
-function mostrarMensaje(){
+function mensaje(){
+
 document.getElementById("contenido").innerHTML = `
-<iframe src="mensaje.html" style="width:100%; height:70vh; border:none;"></iframe>
+<iframe src="mensaje.html"
+style="width:90%; height:600px; border:none;">
+</iframe>
 `;
+
 }
 
-/* galería */
-function mostrarGaleria(){
+/* galeria */
+function galeria(){
+
 document.getElementById("contenido").innerHTML = `
+
 <h2>💖 Nuestras fotos 💖</h2>
+
 <div class="galeria">
-<img src="img/foto1.jpg">
-<img src="img/foto2.jpg">
-<img src="img/foto3.jpg">
+
+<img src="imagen/imagen.Foto1.jpg.jpeg">
+<img src="imagen/imagen.Foto2.jpg.jpeg">
+<img src="imagen/imagen.Foto3.jpg.jpeg">
+
 </div>
+
 `;
+
 }
 
 </script>
